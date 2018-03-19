@@ -1,0 +1,1 @@
+Practice ecommerce project for Java and Spring
