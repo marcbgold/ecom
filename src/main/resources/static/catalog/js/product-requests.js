@@ -6,12 +6,16 @@ xhr.onreadystatechange = function() {
 
 		res.forEach((product) => {
 			const productContainer = document.createElement('div')
-			productContainer.innerText = product.name
-			productsContainer.appendChild
-			(productContainer)
+			const productLink = document.createElement('a')
+			productLink.setAttribute('href', './product.html')
+			productLink.innerText = product.name
+			productContainer.appendChild(productLink)
+			productsContainer.appendChild(productContainer)
 		})
 	}
 }
 
 xhr.open('GET', '/products', true)
 xhr.send()
+
+
