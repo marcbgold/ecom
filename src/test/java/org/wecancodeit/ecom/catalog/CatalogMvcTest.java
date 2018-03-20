@@ -23,4 +23,9 @@ public class CatalogMvcTest {
 		mvc.perform(get("/products")).andExpect(status().isOk());
 	}
 
+	@Test
+	public void shouldRetrieveOneProduct() throws Exception {
+		mvc.perform(get("/products/1")).andExpect(status().isOk());
+	}
+
 }

@@ -14,7 +14,7 @@ import org.springframework.test.context.junit4.SpringRunner;
 
 @RunWith(SpringRunner.class)
 @JsonTest
-public class CatalogJsonTest {
+public class ProductJsonTest {
 
 	@Autowired
 	private JacksonTester<Product> json;
