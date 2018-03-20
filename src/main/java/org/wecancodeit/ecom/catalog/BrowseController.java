@@ -1,8 +1,8 @@
 package org.wecancodeit.ecom.catalog;
 
-import java.util.Collection;
-import java.util.Collections;
+import javax.annotation.Resource;
 
+import org.springframework.data.repository.CrudRepository;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -10,9 +10,12 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 public class BrowseController {
 
+	@Resource
+	CrudRepository<Product, Long> productRepo;
+
 	@RequestMapping("/products")
-	public Collection<Product> findProducts() {
-		return Collections.singleton(new Product("thing"));
+	public Iterable<Product> findProducts() {
+		return productRepo.findAll();
 	}
 
 	@RequestMapping("/products/{id}")
