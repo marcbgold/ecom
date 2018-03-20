@@ -1,8 +1,15 @@
 package org.wecancodeit.ecom.catalog;
 
-//@Component
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
+
+@Entity
 public class Product {
 
+	@Id
+	@GeneratedValue
+	private long id;
 	private String name;
 
 	@SuppressWarnings("unused")
@@ -11,6 +18,10 @@ public class Product {
 
 	public Product(String name) {
 		this.name = name;
+	}
+
+	public long getId() {
+		return id;
 	}
 
 	public String getName() {
