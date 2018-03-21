@@ -1,5 +1,6 @@
 package org.wecancodeit.ecom.catalog;
 
+import static org.mockito.Mockito.when;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
@@ -30,7 +31,16 @@ public class CatalogMvcTest {
 
 	@Test
 	public void shouldRetrieveOneProduct() throws Exception {
+		when(productRepo.findOne(1L)).thenReturn(new Product("test"));
+
 		mvc.perform(get("/products/1")).andExpect(status().isOk());
 	}
+
+	// @Test(expected = ProductNotFoundException.class)
+	// public void shouldReturnNotFoundForBadProductId() {
+	// long invalidId = 2L;
+	// mvc.perform(get("/products/1")).andExpect(status().isOk());
+	//
+	// }
 
 }

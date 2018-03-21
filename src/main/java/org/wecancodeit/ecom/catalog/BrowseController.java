@@ -14,13 +14,22 @@ public class BrowseController {
 	CrudRepository<Product, Long> productRepo;
 
 	@RequestMapping("/products")
-	public Iterable<Product> findProducts() {
+	public Iterable<Product> findAllProducts() {
 		return productRepo.findAll();
 	}
 
 	@RequestMapping("/products/{id}")
-	public Product findProduct(@PathVariable long id) {
-		return new Product("herp derp");
+	public Product findOneProduct(@PathVariable long id) {
+		Product selectedProduct = productRepo.findOne(id);
+		if (selectedProduct != null) {
+			return selectedProduct;
+		}
+
+		throw new ProductNotFoundException();
+	}
+
+	@SuppressWarnings("serial")
+	public class ProductNotFoundException extends RuntimeException {
 	}
 
 }
