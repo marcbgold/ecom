@@ -36,11 +36,10 @@ public class CatalogMvcTest {
 		mvc.perform(get("/products/1")).andExpect(status().isOk());
 	}
 
-	// @Test(expected = ProductNotFoundException.class)
-	// public void shouldReturnNotFoundForBadProductId() {
-	// long invalidId = 2L;
-	// mvc.perform(get("/products/1")).andExpect(status().isOk());
-	//
-	// }
+	@Test
+	public void shouldReturnNotFoundForBadProductId() throws Exception {
+		mvc.perform(get("/products/1")).andExpect(status().isNotFound());
+
+	}
 
 }
