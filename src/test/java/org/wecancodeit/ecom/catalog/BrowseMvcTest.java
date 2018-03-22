@@ -15,8 +15,8 @@ import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.test.web.servlet.MockMvc;
 
 @RunWith(SpringRunner.class)
-@WebMvcTest
-public class CatalogMvcTest {
+@WebMvcTest(BrowseController.class)
+public class BrowseMvcTest {
 
 	@Resource
 	private MockMvc mvc;
@@ -39,7 +39,6 @@ public class CatalogMvcTest {
 	@Test
 	public void shouldReturnNotFoundForBadProductId() throws Exception {
 		mvc.perform(get("/products/1")).andExpect(status().isNotFound());
-
 	}
 
 }
