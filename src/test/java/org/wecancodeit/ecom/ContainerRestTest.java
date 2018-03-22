@@ -1,5 +1,6 @@
 package org.wecancodeit.ecom;
 
+import static org.hamcrest.Matchers.greaterThan;
 import static org.hamcrest.Matchers.is;
 import static org.junit.Assert.assertThat;
 
@@ -13,6 +14,7 @@ import org.springframework.boot.test.web.client.TestRestTemplate;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.test.context.junit4.SpringRunner;
+import org.wecancodeit.ecom.catalog.Product;
 
 @RunWith(SpringRunner.class)
 @SpringBootTest(webEnvironment = WebEnvironment.RANDOM_PORT)
@@ -22,12 +24,21 @@ public class ContainerRestTest {
 	private TestRestTemplate restTemplate;
 
 	@Test
-	public void exampleTest() {
+	public void shouldGetProducts() {
 		ResponseEntity<String> response = restTemplate.getForEntity("/products", String.class);
 
 		HttpStatus status = response.getStatusCode();
 
 		assertThat(status, is(HttpStatus.OK));
+	}
+
+	@Test
+	public void shouldCreateProduct() {
+		Product product = new Product("test");
+
+		ResponseEntity<Product> response = restTemplate.postForEntity("/products", product, Product.class);
+
+		assertThat(response.getBody().getId(), is(greaterThan(0L)));
 	}
 
 }

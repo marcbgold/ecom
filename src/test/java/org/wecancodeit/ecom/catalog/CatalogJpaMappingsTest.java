@@ -1,5 +1,9 @@
 package org.wecancodeit.ecom.catalog;
 
+import static org.hamcrest.Matchers.greaterThan;
+import static org.hamcrest.Matchers.is;
+import static org.junit.Assert.assertThat;
+
 import javax.annotation.Resource;
 
 import org.junit.Before;
@@ -27,6 +31,15 @@ public class CatalogJpaMappingsTest {
 
 	@Test
 	public void shouldInitializeProductRepository() {
+	}
+
+	@Test
+	public void shouldAssignIdToNewProduct() {
+		Product product = new Product("test");
+
+		product = productRepo.save(product);
+
+		assertThat(product.getId(), is(greaterThan(0L)));
 	}
 
 	// @Test
